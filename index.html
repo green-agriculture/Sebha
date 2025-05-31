@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السبحة الرقمية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d3b1e 0%, #1a5d2b 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* الزخارف الإسلامية */
+        .islamic-pattern {
+            position: absolute;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        .pattern-1 {
+            top: 5%;
+            left: 5%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #d4af37 0%, transparent 70%);
+            border-radius: 50%;
+            transform: rotate(45deg);
+        }
+        
+        .pattern-2 {
+            bottom: 10%;
+            right: 10%;
+            width: 80px;
+            height: 80px;
+            background: conic-gradient(#d4af37 0%, #d4af37 25%, transparent 25%, transparent 100%);
+            border-radius: 50%;
+        }
+        
+        .pattern-3 {
+            top: 15%;
+            right: 20%;
+            width: 60px;
+            height: 60px;
+            background: repeating-linear-gradient(45deg, #d4af37, #d4af37 5px, transparent 5px, transparent 10px);
+            border-radius: 50%;
+        }
+        
+        .pattern-4 {
+            bottom: 20%;
+            left: 15%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, #d4af37 0%, transparent 60%);
+        }
+        
+        /* تصميم السبحة */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            padding: 30px;
+            background: rgba(13, 59, 30, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 2px solid #d4af37;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            color: #c9c9c9;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        /* تصميم العداد */
+        .counter-container {
+            position: relative;
+            margin: 30px auto;
+            width: 250px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .counter-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0d3b1e 0%, #1e8a3e 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 
+                0 0 0 10px rgba(212, 175, 55, 0.3),
+                0 0 0 20px rgba(212, 175, 55, 0.2),
+                0 0 30px rgba(212, 175, 55, 0.3);
+            border: 4px solid #d4af37;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .counter-circle:active {
+            transform: scale(0.95);
+            box-shadow: 
+                0 0 0 5px rgba(212, 175, 55, 0.3),
+                0 0 0 15px rgba(212, 175, 55, 0.2),
+                0 0 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .counter {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+        
+        /* تصميم زر الإعادة */
+        .reset-btn {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+            color: #0d3b1e;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .reset-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .reset-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* التوجيهات */
+        .instructions {
+            margin-top: 30px;
+            color: #c9c9c9;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+        
+        .instructions i {
+            color: #d4af37;
+            margin-left: 8px;
+        }
+        
+        /* التذييل */
+        .footer {
+            margin-top: 30px;
+            color: #8c8c8c;
+            font-size: 0.9rem;
+        }
+        
+        /* تأثيرات للهواتف */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .counter {
+                font-size: 5rem;
+            }
+            
+            .counter-container {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .reset-btn {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الزخارف الإسلامية -->
+    <div class="islamic-pattern pattern-1"></div>
+    <div class="islamic-pattern pattern-2"></div>
+    <div class="islamic-pattern pattern-3"></div>
+    <div class="islamic-pattern pattern-4"></div>
+    
+    <!-- المحتوى الرئيسي -->
+    <div class="container">
+        <div class="header">
+            <h1 class="title">السبحة الرقمية</h1>
+            <p class="subtitle">ذكر الله يرفعك في الدنيا والآخرة</p>
+        </div>
+        
+        <div class="counter-container">
+            <div class="counter-circle" id="counterCircle">
+                <div class="counter" id="counter">0</div>
+            </div>
+        </div>
+        
+        <button class="reset-btn" id="resetBtn">
+            <i class="fas fa-redo-alt"></i> إعادة العداد
+        </button>
+        
+        <div class="instructions">
+            <p><i class="fas fa-hand-pointer"></i> المس الدائرة الذهبية لزيادة العداد</p>
+            <p><i class="fas fa-redo-alt"></i> استخدم زر الإعادة لتصفير العداد</p>
+        </div>
+        
+        <div class="footer">
+            <p>سبحة رقمية - التسبيح في عصر التقنية</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const counterElement = document.getElementById('counter');
+            const counterCircle = document.getElementById('counterCircle');
+            const resetBtn = document.getElementById('resetBtn');
+            
+            let count = 0;
+            
+            // زيادة العداد عند لمس الدائرة
+            counterCircle.addEventListener('click', function() {
+                count++;
+                updateCounter();
+                animateClick();
+            });
+            
+            // إعادة العداد إلى الصفر
+            resetBtn.addEventListener('click', function() {
+                count = 0;
+                updateCounter();
+                animateReset();
+            });
+            
+            // دعم لمس الشاشة للهواتف
+            counterCircle.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                count++;
+                updateCounter();
+                animateClick();
+            });
+            
+            // تحديث العداد مع تأثيرات
+            function updateCounter() {
+                counterElement.textContent = count;
+                
+                // تأثير تغيير اللون عند التحديث
+                counterElement.style.transition = 'all 0.3s';
+                counterElement.style.transform = 'scale(1.1)';
+                counterElement.style.color = '#ffdf6b';
+                
+                setTimeout(() => {
+                    counterElement.style.transform = 'scale(1)';
+                    counterElement.style.color = '#d4af37';
+                }, 300);
+            }
+            
+            // تأثيرات الحركة عند النقر
+            function animateClick() {
+                counterCircle.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    counterCircle.style.transform = 'scale(1)';
+                }, 200);
+            }
+            
+            // تأثيرات الحركة عند الإعادة
+            function animateReset() {
+                counterElement.style.transition = 'all 0.5s';
+                counterElement.style.transform = 'rotate(360deg)';
+                counterElement.style.opacity = '0.5';
+                
+                setTimeout(() => {
+                    counterElement.style.transform = 'rotate(0deg)';
+                    counterElement.style.opacity = '1';
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
